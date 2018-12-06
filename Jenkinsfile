@@ -8,18 +8,18 @@ pipeline {
 
 			steps {
 				echo "Init..."
-				bat 'if exist C:\\TEST\\setup rd /q /s C:\\TEST\\setup'
-				bat 'mkdir C:\\TEST\\setup'
+				//bat 'if exist C:\\TEST\\setup rd /q /s C:\\TEST\\setup'
+				//bat 'mkdir C:\\TEST\\setup'
 			}
 		}
 			
 		stage('Build') {
 			agent {
 				docker {
-						image 'execut/mappstfzezeingtest'
+						image 'execut/mappingtest'
 						registryUrl 'https://registry.hub.docker.com'
 						registryCredentialsId 'docker_login'
-						args '-v C:\\TEST\\setup:/home/setup'
+						args '-v /home/setup:/home/setup'
 				}	    
 			}
 
