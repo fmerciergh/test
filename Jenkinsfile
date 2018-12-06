@@ -12,7 +12,7 @@ pipeline {
 				sh 'mkdir $HOME/setup'
 				sh 'rm -rf $HOME/src'
 				sh 'svn checkout -q --non-interactive --username exploit --password VsS3o2s8 svn://192.168.216.21/mappingsuite/M-Suite/trunk $HOME/src'
-				sh 'chmod 777 -rf $HOME/src/compil/linux/make_build.sh'
+				sh 'chmod 777 $HOME/src/compil/linux/make_build.sh'
 			}
 		}
 			
