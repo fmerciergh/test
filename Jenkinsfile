@@ -7,10 +7,12 @@ node {
 	}
 		
     stage('Build') {
-		docker {
-		image 'mapping/buildlinux_trunk'
-		args '-v C:\\TEST\\setup:/home/setup'
-		}    	
+		agent {
+			docker {
+					image 'mapping/buildlinux_trunk'
+					args '-v C:\\TEST\\setup:/home/setup'
+			}	    
+		}		
     }
     
     stage('Unit Test') {
