@@ -8,21 +8,21 @@ pipeline {
 
 			steps {
 				echo "Init..."
-				sh 'rm -rf $HOME/setup'
-				sh 'mkdir $HOME/setup'
-				sh 'rm -rf $HOME/src'
-				sh 'svn checkout -q --non-interactive --username exploit --password VsS3o2s8 svn://192.168.216.21/mappingsuite/M-Suite/trunk $HOME/src'
-				sh 'chmod 777 $HOME/src/compil/linux/make_build.sh'
+				sh 'rm -rf $WORKSPACE/setup'
+				sh 'mkdir $WORKSPACE/setup'
+				sh 'rm -rf $WORKSPACE/src'
+				sh 'svn checkout -q --non-interactive --username exploit --password VsS3o2s8 svn://192.168.216.21/mappingsuite/M-Suite/trunk $WORKSPACE/src'
+				sh 'chmod 777 $WORKSPACE/src/compil/linux/make_build.sh'
 			}
 		}
 			
-		stage('Build') {
+		stage('Build Setup') {
 			agent {
 				docker {
 						image 'execut/mappingtest'
 						registryUrl 'https://registry.hub.docker.com'
 						registryCredentialsId 'docker_login'
-						args '-v $HOME/setup:/home/setup -v $HOME/src:/home/src'
+						args '-v $WORKSPACE/setup:/home/setup -v $WORKSPACE/src:/home/src'
 				}	    
 			}
 
@@ -39,12 +39,22 @@ pipeline {
 			}
 		}
 		
+		stage('Integration Test : Generation maquette') {
+			steps {
+				echo "Generation maquette..."
+			}
+		}
+		
+		stage('Integration Test : Generation report') {
+			steps {
+				echo "Generation report..."
+			}
+		}
+		
 		stage('Integration Test') {
 			steps {
 				echo "Integration Test..."
 			}
-				
-			
 		}
 		
 		stage('Changelog') {
@@ -54,8 +64,12 @@ pipeline {
 		}
 		
 		stage('Deploy') {
+		
+			agent any
+			
 			steps {
 				echo "Deploy..."
+				sh 'cp $WORKSPACE/setup/* /home/jenkins/setups/'
 			}
 		}
 	}
