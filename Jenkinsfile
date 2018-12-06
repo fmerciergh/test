@@ -1,5 +1,5 @@
 node {
-    
+    agent none
 	stage('Init') {
     	
 		bat 'if exist C:\\TEST\\setup rd /q /s C:\\TEST\\setup'
