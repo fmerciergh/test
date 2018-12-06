@@ -1,34 +1,37 @@
 pipeline {
     agent none
-	stage('Init') {
-    	
-		steps{
-		bat 'if exist C:\\TEST\\setup rd /q /s C:\\TEST\\setup'
-		bat 'mkdir C:\\TEST\\setup'
+	
+	stages {
+		stage('Init') {
+			
+			steps {
+				bat 'if exist C:\\TEST\\setup rd /q /s C:\\TEST\\setup'
+				bat 'mkdir C:\\TEST\\setup'
+			}
+		}
+			
+		stage('Build') {
+			agent {
+				docker {
+						image 'mapping/buildlinux_trunk'
+						args '-v C:\\TEST\\setup:/home/setup'
+				}	    
+			}		
+		}
+		
+		stage('Unit Test') {
+		}
+		
+		stage('Integration Test') {
+				
+			
+		}
+		
+		stage('Changelog') {
+		}
+		
+		stage('Deploy') {
 		}
 	}
-		
-    stage('Build') {
-		agent {
-			docker {
-					image 'mapping/buildlinux_trunk'
-					args '-v C:\\TEST\\setup:/home/setup'
-			}	    
-		}		
-    }
-    
-    stage('Unit Test') {
-    }
-    
-    stage('Integration Test') {
-			
-		
-    }
-	
-	stage('Changelog') {
-    }
-    
-    stage('Deploy') {
-    }
 	
 }
