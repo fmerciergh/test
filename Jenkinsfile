@@ -1,9 +1,11 @@
-node {
+pipeline {
     agent none
 	stage('Init') {
     	
+		steps{
 		bat 'if exist C:\\TEST\\setup rd /q /s C:\\TEST\\setup'
 		bat 'mkdir C:\\TEST\\setup'
+		}
 	}
 		
     stage('Build') {
