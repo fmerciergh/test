@@ -11,12 +11,12 @@ pipeline {
 		}
 			
 		stage('Build') {
-			agent {
-				docker {
-						image 'mapping/buildlinux_trunk'
-						args '-v C:\\TEST\\setup:/home/setup'
-				}	    
-			}
+			//agent {
+			//	docker {
+			//			image 'mapping/buildlinux_trunk'
+			//			args '-v C:\\TEST\\setup:/home/setup'
+			//	}	    
+			//}
 
 			steps {
 				echo "Build..."
