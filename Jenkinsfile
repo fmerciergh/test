@@ -8,8 +8,10 @@ pipeline {
 
 			steps {
 				echo "Init..."
-				sh 'rm -rf /home/jenkins/setup'
-				sh 'mkdir /home/jenkins/setup'
+				sh 'rm -rf $HOME/setup'
+				sh 'mkdir $HOME/setup'
+				sh 'rm -rf $HOME/src'
+				sh 'svn checkout -q --non-interactive --username exploit --password VsS3o2s8 svn://192.168.216.21/mappingsuite/M-Suite/trunk $HOME/src'
 			}
 		}
 			
@@ -19,16 +21,13 @@ pipeline {
 						image 'execut/mappingtest'
 						registryUrl 'https://registry.hub.docker.com'
 						registryCredentialsId 'docker_login'
-						args '-v /home/jenkins/setup:/home/setup'
+						args '-v $HOME/setup:/home/setup -v $HOME/src:/home/src'
 				}	    
 			}
 
 			steps {
 				echo "Build..."
-				sh 'chmod 777 /home/src'
-				sh 'svn checkout -q --non-interactive --username exploit --password VsS3o2s8 svn://192.168.216.21/mappingsuite/M-Suite/trunk /home/src && \
-					cd /home/src/compil/linux && \
-					chmod 777 make_build.sh && \
+				sh 'cd /home/src/compil/linux && \
 					./make_build.sh'
 			}			
 		}
