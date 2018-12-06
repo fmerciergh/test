@@ -5,8 +5,8 @@ pipeline {
 		stage('Init') {			
 			steps {
 				echo "Init..."
-				//bat 'if exist C:\\TEST\\setup rd /q /s C:\\TEST\\setup'
-				//bat 'mkdir C:\\TEST\\setup'
+				bat 'if exist C:\\TEST\\setup rd /q /s C:\\TEST\\setup'
+				bat 'mkdir C:\\TEST\\setup'
 			}
 		}
 			
