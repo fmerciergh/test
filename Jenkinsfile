@@ -8,8 +8,8 @@ pipeline {
 
 			steps {
 				echo "Init..."
-				sh 'rm -rf /home/setup'
-				sh 'mkdir /home/setup'
+				sh 'rm -rf /home/jenkins/setup'
+				sh 'mkdir /home/jenkins/setup'
 			}
 		}
 			
@@ -19,7 +19,7 @@ pipeline {
 						image 'execut/mappingtest'
 						registryUrl 'https://registry.hub.docker.com'
 						registryCredentialsId 'docker_login'
-						args '-v /home/setup:/home/setup'
+						args '-v /home/jenkins/setup:/home/setup'
 				}	    
 			}
 
