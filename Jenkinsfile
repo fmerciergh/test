@@ -16,7 +16,7 @@ pipeline {
 		stage('Build') {
 			agent {
 				docker {
-						image 'mappingtest'
+						image 'execut/mappingtest'
 						registryUrl 'https://registry.hub.docker.com'
 						registryCredentialsId 'docker_login'
 						args '-v C:\\TEST\\setup:/home/setup'
