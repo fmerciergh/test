@@ -2,14 +2,14 @@ node {
     
 	stage('Init') {
     	
-		bat 'if exist C:\\LINUX\\setup rd /q /s C:\\LINUX\\setup'
-		bat 'mkdir C:\\LINUX\\setup'
+		bat 'if exist C:\\TEST\\setup rd /q /s C:\\TEST\\setup'
+		bat 'mkdir C:\\TEST\\setup'
 	}
 		
     stage('Build') {
 		docker {
 		image 'mapping/buildlinux_trunk'
-		args '-v C:\\LINUX\\setup:/home/setup'
+		args '-v C:\\TEST\\setup:/home/setup'
 		}    	
     }
     
