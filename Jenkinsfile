@@ -25,10 +25,10 @@ pipeline {
 
 			steps {
 				echo "Build..."
-				bat 'svn checkout -q --non-interactive --username exploit --password VsS3o2s8 svn://192.168.216.21/mappingsuite/M-Suite/trunk /home/src && \
-					cd /home/src/compil/linux && \
-					chmod 777 make_build.sh && \
-					./make_build.sh'
+				//bat 'svn checkout -q --non-interactive --username exploit --password VsS3o2s8 svn://192.168.216.21/mappingsuite/M-Suite/trunk /home/src && \
+				//	cd /home/src/compil/linux && \
+				//	chmod 777 make_build.sh && \
+				//	./make_build.sh'
 			}			
 		}
 		
