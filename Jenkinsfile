@@ -2,11 +2,11 @@ pipeline {
     agent none
 	
 	stages {
-		stage('Init') {
-			
+		stage('Init') {			
 			steps {
-				bat 'if exist C:\\TEST\\setup rd /q /s C:\\TEST\\setup'
-				bat 'mkdir C:\\TEST\\setup'
+				echo "Init..."
+				//bat 'if exist C:\\TEST\\setup rd /q /s C:\\TEST\\setup'
+				//bat 'mkdir C:\\TEST\\setup'
 			}
 		}
 			
